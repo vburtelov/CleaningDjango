@@ -14,6 +14,24 @@ class User(models.Model):
     def __str__(self):
         return f'{self.surname} {self.name} {self.middlename}'
 
+    class Meta:
+        verbose_name = "Пользователь"
+        verbose_name_plural = "Пользователи"
+
+
+class Cleaner(models.Model):
+    name = models.CharField(max_length=45)
+    number_of_sweeps = models.IntegerField(default=0)
+    rating = models.FloatField()
+    phone_number = models.CharField(max_length=45)
+
+    def __str__(self):
+        return f'{self.name}'
+
+    class Meta:
+        verbose_name = "Уборщик"
+        verbose_name_plural = "Уборщики"
+
 
 class Order(models.Model):
     class Type(models.TextChoices):
@@ -45,8 +63,24 @@ class Order(models.Model):
     )
     square = models.IntegerField(verbose_name="Площадь уборки")
 
+    cleaner = models.ForeignKey(
+        Cleaner,
+        on_delete=models.DO_NOTHING,
+        verbose_name="Уборщик"
+    )
+
+    user = models.ForeignKey(
+        User,
+        on_delete=models.DO_NOTHING,
+        verbose_name="Пользователь"
+    )
+
     created_time = models.DateTimeField(auto_now_add=True)
     updated_time = models.DateTimeField(auto_now=True)
 
     def __str__(self):
         return f'Заказ на {self.address} {self.date}'
+
+    class Meta:
+        verbose_name = "Заказ"
+        verbose_name_plural = "Заказы"

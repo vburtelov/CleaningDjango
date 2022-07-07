@@ -20,7 +20,7 @@ class CustomGroup(Group):
 class CustomUser(AbstractUser):
     name = models.CharField(max_length=45, verbose_name="Имя")
     surname = models.CharField(max_length=45, verbose_name="Фамилия")
-    middle_name = models.CharField(max_length=45, verbose_name="Отчество")
+    middle_name = models.CharField(max_length=45, verbose_name="Отчество", blank=True, null=True)
     phone_number = models.CharField(max_length=45, verbose_name="Номер телефона")
     created_time = models.DateTimeField(auto_now_add=True, verbose_name="Дата регистрации")
     updated_time = models.DateTimeField(auto_now=True, verbose_name="Дата обновления")
@@ -28,6 +28,8 @@ class CustomUser(AbstractUser):
     groups = models.ManyToManyField(CustomGroup)
 
     username = None
+    first_name = None
+    last_name = None
     email = models.EmailField("Электронная почта", unique=True)
 
     USERNAME_FIELD = 'email'

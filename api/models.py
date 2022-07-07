@@ -1,3 +1,5 @@
+import datetime
+
 from django.db import models
 
 
@@ -138,3 +140,44 @@ class Order(models.Model):
     class Meta:
         verbose_name = "Заказ"
         verbose_name_plural = "Заказы"
+
+
+class CleaningTime(models.Model):
+    time = models.TimeField(verbose_name="Время уборки")
+
+    def __str__(self):
+        return f'{self.time}'
+
+    class Meta:
+        verbose_name = "Время уборок"
+        verbose_name_plural = "Времена уборок"
+
+
+class CleanerCalendar(models.Model):
+    cleaner = models.ForeignKey(
+        Cleaner,
+        on_delete=models.DO_NOTHING,
+        verbose_name="Уборщик"
+    )
+    date = models.DateField(verbose_name="Дата уборки", default=datetime.date.today)
+
+    time = models.ForeignKey(
+        CleaningTime,
+        on_delete=models.DO_NOTHING,
+        verbose_name="Время уборки"
+    )
+
+    order = models.ForeignKey(
+        Order,
+        on_delete=models.CASCADE,
+        verbose_name="Заказ"
+
+    )
+
+    def __str__(self):
+        return f'{self.cleaner} {self.date} {self.time} {self.order}'
+
+    class Meta:
+        verbose_name = "Календарь уборок"
+        verbose_name_plural = "Календари уборок"
+

@@ -1,4 +1,3 @@
-from django.shortcuts import render
 from rest_framework import viewsets, permissions
 from api.models import User, Order
 from api.serializers import UserSerializer, OrderSerializer

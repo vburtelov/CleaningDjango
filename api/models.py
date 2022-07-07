@@ -34,7 +34,7 @@ class BasicService(models.Model):
 
 class ExtraService(models.Model):
     name = models.CharField(max_length=45, verbose_name="Название")
-    price_per_meter = models.IntegerField(verbose_name="Цена за квадратный метр")
+    price = models.IntegerField(verbose_name="Цена", default=0)
 
     def __str__(self):
         return f'{self.name}'
@@ -63,6 +63,7 @@ class Cleaner(models.Model):
     number_of_sweeps = models.IntegerField(default=0, verbose_name="Количество уборок")
     rating = models.FloatField(verbose_name="Рейтинг")
     phone_number = models.CharField(max_length=45, verbose_name="Номер телефона")
+    is_active = models.BooleanField(default=True, verbose_name="Активен")
 
     def __str__(self):
         return f'{self.name}'
@@ -95,10 +96,26 @@ class Frequency(models.Model):
         verbose_name_plural = "Частоты уборок"
 
 
+class CleaningTime(models.Model):
+    time = models.TimeField(verbose_name="Время уборки")
+
+    def __str__(self):
+        return f'{self.time}'
+
+    class Meta:
+        verbose_name = "Время уборок"
+        verbose_name_plural = "Времена уборок"
+
+
 class Order(models.Model):
     address = models.CharField(max_length=255, verbose_name="Адрес")
-    date = models.DateField(verbose_name="Дата начала")
-    time = models.CharField(max_length=45, verbose_name="Примерное время")
+    date = models.DateField(verbose_name="Дата уборки")
+    time = models.ForeignKey(
+        CleaningTime,
+        on_delete=models.DO_NOTHING,
+        verbose_name="Время уборки"
+
+    )
     type = models.ForeignKey(
         TypeOfCleaning,
         on_delete=models.DO_NOTHING,
@@ -129,6 +146,8 @@ class Order(models.Model):
         verbose_name="Промокод"
     )
 
+    is_active = models.BooleanField(verbose_name="Активен", default=True)
+
     extra_services = models.ManyToManyField(ExtraService)
 
     created_time = models.DateTimeField(auto_now_add=True)
@@ -140,17 +159,6 @@ class Order(models.Model):
     class Meta:
         verbose_name = "Заказ"
         verbose_name_plural = "Заказы"
-
-
-class CleaningTime(models.Model):
-    time = models.TimeField(verbose_name="Время уборки")
-
-    def __str__(self):
-        return f'{self.time}'
-
-    class Meta:
-        verbose_name = "Время уборок"
-        verbose_name_plural = "Времена уборок"
 
 
 class CleanerCalendar(models.Model):
@@ -180,4 +188,3 @@ class CleanerCalendar(models.Model):
     class Meta:
         verbose_name = "Календарь уборок"
         verbose_name_plural = "Календари уборок"
-

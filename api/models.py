@@ -19,6 +19,17 @@ class User(models.Model):
         verbose_name_plural = "Пользователи"
 
 
+class BasicService(models.Model):
+    name = models.CharField(max_length=45, verbose_name="Название")
+
+    def __str__(self):
+        return f'{self.name}'
+
+    class Meta:
+        verbose_name = "Базовая услуга"
+        verbose_name_plural = "Базовые услуги"
+
+
 class ExtraService(models.Model):
     name = models.CharField(max_length=45, verbose_name="Название")
     price_per_meter = models.IntegerField(verbose_name="Цена за квадратный метр")
@@ -59,10 +70,6 @@ class Cleaner(models.Model):
         verbose_name_plural = "Уборщики"
 
 
-# EASY = '1', "Лёгкая уборка"
-# SUPPORT = ' 2', "Поддерживающая уборка"
-# GENERAL = '3', "Генеральная уборка"
-# AFTER_REPAIR = '4', "Уборка после ремонта"
 class TypeOfCleaning(models.Model):
     name = models.CharField(max_length=45, verbose_name="Название")
     price_per_meter = models.IntegerField(verbose_name="Цена за квадратный метр")
@@ -75,10 +82,6 @@ class TypeOfCleaning(models.Model):
         verbose_name_plural = "Типы уборки"
 
 
-# ONCE = '1', "Разовая"
-# ONCE_EVERY_TWO_WEEK = '2', "Раз в две недели"
-# ONCE_A_WEEK = ' 3', "Раз в неделю"
-# ONCE_A_MONTH = '4', "Раз в месяц"
 class Frequency(models.Model):
     name = models.CharField(max_length=45)
 

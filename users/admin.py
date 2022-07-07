@@ -8,10 +8,10 @@ admin.site.unregister(Group)
 
 @admin.register(CustomGroup)
 class GroupAdmin(admin.ModelAdmin):
-    list_display = ('id',)
+    list_display = ('id', 'name')
 
 
 @admin.register(CustomUser)
 class CustomUserAdmin(admin.ModelAdmin):
-    list_display = ('id', 'name', 'surname', 'email',)
+    list_display = ('id', 'name', 'surname', 'email', 'is_superuser',)
     ordering = ('email',)

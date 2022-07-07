@@ -1,24 +1,7 @@
 import datetime
 
+from django.conf import settings
 from django.db import models
-
-
-class User(models.Model):
-    name = models.CharField(max_length=45, verbose_name="Имя")
-    surname = models.CharField(max_length=45, verbose_name="Фамилия")
-    middle_name = models.CharField(max_length=45, verbose_name="Отчество")
-    phone_number = models.CharField(max_length=45, verbose_name="Номер телефона")
-    email = models.CharField(max_length=45, verbose_name="Почта")
-
-    created_time = models.DateTimeField(auto_now_add=True, verbose_name="Дата регистрации")
-    updated_time = models.DateTimeField(auto_now=True, verbose_name="Дата обновления")
-
-    def __str__(self):
-        return f'{self.surname} {self.name} {self.middle_name}'
-
-    class Meta:
-        verbose_name = "Пользователь"
-        verbose_name_plural = "Пользователи"
 
 
 class BasicService(models.Model):
@@ -76,6 +59,8 @@ class Cleaner(models.Model):
 class TypeOfCleaning(models.Model):
     name = models.CharField(max_length=45, verbose_name="Название")
     price_per_meter = models.IntegerField(verbose_name="Цена за квадратный метр")
+    basic_services = models.ManyToManyField(BasicService, verbose_name="Доступные базовые услуги")
+    extra_services = models.ManyToManyField(ExtraService, verbose_name="Доступные дополнительные услуги")
 
     def __str__(self):
         return f'{self.name}'
@@ -135,7 +120,7 @@ class Order(models.Model):
     )
 
     user = models.ForeignKey(
-        User,
+        settings.AUTH_USER_MODEL,
         on_delete=models.DO_NOTHING,
         verbose_name="Пользователь"
     )

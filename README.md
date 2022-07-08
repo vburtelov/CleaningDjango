@@ -17,11 +17,6 @@ ____
 | Админ            | admin@admin.ru | 123456 |
 | Пользователь     | user@user.ru   | 123456 |
 
-
-## Схема БД
-
-<img src="DB_Diagram.png" width="1024"/>
-
 ## Установка
 ```sh
 $ git clone https://github.com/vburtelov/CleaningDjango.git
@@ -57,3 +52,7 @@ $ python manage.py createsuperuser
 ```sh
 $ python manage.py runserver
 ```
+
+## Схема БД
+
+<img src="DB_Diagram.png" width="1024"/>

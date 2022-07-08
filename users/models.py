@@ -38,7 +38,7 @@ class CustomUser(AbstractUser):
     objects = CustomUserManager()
 
     def __str__(self):
-        return f'{self.surname} {self.name} {self.middle_name}'
+        return f'{self.surname} {self.name}'
 
     class Meta:
         verbose_name = "Пользователь"

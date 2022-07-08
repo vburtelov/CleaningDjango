@@ -135,7 +135,7 @@ class Order(models.Model):
 
     is_active = models.BooleanField(verbose_name="Активен", default=True)
 
-    extra_services = models.ManyToManyField(ExtraService, null=True, blank=True)
+    extra_services = models.ManyToManyField(ExtraService, blank=True, verbose_name="Дополнительные услуги")
 
     created_time = models.DateTimeField(auto_now_add=True)
     updated_time = models.DateTimeField(auto_now=True)

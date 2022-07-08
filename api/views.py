@@ -2,7 +2,7 @@ from rest_framework import viewsets
 
 from api.models import Order, ExtraService, BasicService, Cleaner, TypeOfCleaning, Frequency, CleaningTime, \
     CleanerCalendar
-from api.serializers import OrderSerializer, OrderSerializerCreate, ExtraServiceSerializer, BasicServiceSerializer, \
+from api.serializers import OrderSerializer, OrderCreateSerializer, ExtraServiceSerializer, BasicServiceSerializer, \
     CleanerSerializer, TypeOfCleaningSerializer, FrequencySerializer, CleaningTimeSerializer, CleanerCalendarSerializer
 
 
@@ -55,5 +55,5 @@ class OrderViewSet(viewsets.ModelViewSet):
     def get_serializer_class(self):
         serializer_class = self.serializer_class
         if self.request.method == 'POST':
-            serializer_class = OrderSerializerCreate
+            serializer_class = OrderCreateSerializer
         return serializer_class

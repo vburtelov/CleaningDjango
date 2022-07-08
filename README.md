@@ -1,4 +1,4 @@
-# CleaningDjango
+# Cleaning Django 
 ____
 
 ## Сервис для заказа уборки квартир

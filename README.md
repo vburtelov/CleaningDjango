@@ -18,6 +18,10 @@ ____
 | Пользователь     | user@user.ru   | 123456 |
 
 
+## Схема БД
+
+<img src="DB_Diagram.png" width="512"/>
+
 ## Установка
 ```sh
 $ git clone https://github.com/vburtelov/CleaningDjango.git

@@ -8,7 +8,9 @@ ____
 Студент группы 191-321 Буртелов Вадим Михайлович
 
 ## Установка
-* git clone https://github.com/vburtelov/CleaningDjango.git
+```sh
+$ git clone https://github.com/vburtelov/CleaningDjango.git
+```
 * В корне проекта создайте виртуальное окружение и активируйте его
 ```sh
 $ python -m venv “venv”

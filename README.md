@@ -20,7 +20,7 @@ ____
 
 ## Схема БД
 
-<img src="DB_Diagram.png" width="512"/>
+<img src="DB_Diagram.png" width="1024"/>
 
 ## Установка
 ```sh

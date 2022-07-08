@@ -56,7 +56,7 @@ class CleanerCalendarSerializer(serializers.ModelSerializer):
         fields = '__all__'
 
 
-class OrderSerializerCreate(serializers.ModelSerializer):
+class OrderCreateSerializer(serializers.ModelSerializer):
     class Meta:
         model = Order
         fields = '__all__'

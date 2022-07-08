@@ -128,12 +128,14 @@ class Order(models.Model):
     discount_code = models.ForeignKey(
         DiscountCode,
         on_delete=models.DO_NOTHING,
-        verbose_name="Промокод"
+        verbose_name="Промокод",
+        null=True,
+        blank=True
     )
 
     is_active = models.BooleanField(verbose_name="Активен", default=True)
 
-    extra_services = models.ManyToManyField(ExtraService)
+    extra_services = models.ManyToManyField(ExtraService, null=True, blank=True)
 
     created_time = models.DateTimeField(auto_now_add=True)
     updated_time = models.DateTimeField(auto_now=True)

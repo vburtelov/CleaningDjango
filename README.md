@@ -8,7 +8,7 @@ ____
 Студент группы 191-321 Буртелов Вадим Михайлович
 
 ## Рабочая версия
-[Ссылка](http://cleaning.std-1887.ist.mospolytech.ru/)
+[Админка](http://cleaning.std-1887.ist.mospolytech.ru/admin)
 
 Доступные учетные записи
 
